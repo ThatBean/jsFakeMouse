@@ -1,6 +1,6 @@
 //Bean's Fake Mouse for Good JS
 	//var location="";
-	function B_func_getPageSize() {
+	function FM_func_getPageSize() {
 		var xScroll,yScroll;
 		if (window.innerHeight && window.scrollMaxY) {
 			xScroll = document.body.scrollWidth;
@@ -32,7 +32,7 @@
 		return {"pageX":pageWidth,"pageY":pageHeight,"winX":windowWidth,"winY":windowHeight};
 	}
 	
-	function B_func_setDegree(obj,deg){  
+	function FM_func_setDegree(obj,deg){  
 		obj.style.webkitTransform="rotate("+deg+"deg)";
 		obj.style.MozTransform="rotate("+deg+"deg)";
 		obj.style.msTransform="rotate("+deg+"deg)";
@@ -40,19 +40,19 @@
 		obj.style.transform="rotate("+deg+"deg)";
 	}
 	
-	function B_func_setSizePX(obj,sizeX,sizeY){
+	function FM_func_setSizePX(obj,sizeX,sizeY){
 		obj.width=obj.style.minWidth=obj.style.maxWidth=sizeX+"px";
 		obj.height=obj.style.minHeight=obj.style.maxHeight=sizeY+"px";
 	}
 	
-	function B_func_fakeMouseEvent(B_contentWin,iClientX,iClientY,mouseEvent){
+	function FM_func_fakeMouseEvent(FM_contentWin,iClientX,iClientY,mouseEvent){
 		//if in iframes
-		//var B_contentWin = window.frames["contentFrame"];
-		var getObject=B_contentWin.document.elementFromPoint(iClientX, iClientY);
+		//var FM_contentWin = window.frames["contentFrame"];
+		var getObject=FM_contentWin.document.elementFromPoint(iClientX, iClientY);
 		//alert("Clicked at: "+getObject.tagName);
 		if (getObject.tagName.toUpperCase().search(/FRAME/)!=-1) {	//deal with frames...
 			//for (int i=0;i<window.frames.length;i++) {
-				//if (window.self!=window.frames[i]) B_func_fakeMouseEvent(window.frames[i],iClientX-getObject.offset,iClientY,mouseEvent);
+				//if (window.self!=window.frames[i]) FM_func_fakeMouseEvent(window.frames[i],iClientX-getObject.offset,iClientY,mouseEvent);
 			//}
 			alert("Frames are tricky...Still Dealing with it...");
 			return;
@@ -60,7 +60,7 @@
 		//same window frame
 		//var getObject=document.elementFromPoint(iClientX, iClientY);
 		if (!getObject) return;
-		//if (mouseEvent=="click") alert("[B_func_fakeMouseEvent] GET:"+iClientX+"|"+iClientY+"|"+mouseEvent);
+		//if (mouseEvent=="click") alert("[FM_func_fakeMouseEvent] GET:"+iClientX+"|"+iClientY+"|"+mouseEvent);
 		if (document.createEventObject) { //For IE
 			oEvent = document.createEventObject();
 			oEvent.clientX = iClientX;
@@ -75,7 +75,7 @@
 	
 	
 	//creator func
-	function B_func_insertCss(cssElement,cssCode) {
+	function FM_func_insertCss(cssElement,cssCode) {
 		var newStyle = document.createElement('style');
 		newStyle.type = 'text/css';
 		if (newStyle.styleSheet) {	// IE
@@ -88,7 +88,7 @@
 		//document.getElementsByTagName("head")[0].appendChild( style );
 	}
 	
-	function B_func_createEleNode(eleParent,eleType,eleId,eleText) {
+	function FM_func_createEleNode(eleParent,eleType,eleId,eleText) {
 		var newEleNode = document.createElement(eleType);
 		if (eleText) {
 			var newEleText = document.createTextNode(eleText);
@@ -99,84 +99,84 @@
 	}
 	
 	
-	function B_func_createCssText(B_size, B_color) {
-		var B_thatCss= ""
-		+"#Bean_Cursor {"
+	function FM_func_createCssText(FM_size, FM_color) {
+		var FM_thatCss= ""
+		+"#FM_Cursor {"
 		+"	position:fixed;"
-		+"	right:"+B_size.CursorMargin+"px;"
-		+"	bottom:"+B_size.CursorMargin+"px;"
+		+"	right:"+FM_size.CursorMargin+"px;"
+		+"	bottom:"+FM_size.CursorMargin+"px;"
 		+"	z-index:2090;"
 		
 		+"	margin:0;"
 		+"	padding:0;"
 		
-		+"	font-size:"+B_size.CursorFont+"px;"
-		+"	line-height:"+B_size.Cursor+"px;"
+		+"	font-size:"+FM_size.CursorFont+"px;"
+		+"	line-height:"+FM_size.Cursor+"px;"
 		+"	font-weight:bold;"
 		+"	text-align: center;"
 		+"	color: #FFF;"
 		
-		+"	width:"+B_size.Cursor+"px;"
-		+"	height:"+B_size.Cursor+"px;"
+		+"	width:"+FM_size.Cursor+"px;"
+		+"	height:"+FM_size.Cursor+"px;"
 		//+"	border:5px solid;"
-		+"	border-radius:"+B_size.Cursor+"px;"
+		+"	border-radius:"+FM_size.Cursor+"px;"
 		+"	border-style: none;"
 		
 		+"	border: #427AC7;"
 		+"	background-color: #5091E9;"
 		+"}"
 		
-		+"#Bean_Cursor:hover {"
+		+"#FM_Cursor:hover {"
 		+"	cursor:pointer;"
 		+"	border:#427AC7;"
 		+"	background-color:#436EEE;"
 		+"}"
 		
-		+"#Bean_Cursor_bg {"
+		+"#FM_Cursor_bg {"
 		+"	position:fixed;"
-		+"	right:"+(B_size.CursorMargin-(B_size.CursorBg-B_size.Cursor)/2)+"px;"
-		+"	bottom:"+(B_size.CursorMargin-(B_size.CursorBg-B_size.Cursor)/2)+"px;"
+		+"	right:"+(FM_size.CursorMargin-(FM_size.CursorBg-FM_size.Cursor)/2)+"px;"
+		+"	bottom:"+(FM_size.CursorMargin-(FM_size.CursorBg-FM_size.Cursor)/2)+"px;"
 		+"	z-index:2080;"
 		
 		+"	margin:0;"
 		+"	padding:0;"
 		
-		+"	font-size:"+B_size.CursorBgFont+"px;"
-		+"	line-height:"+B_size.CursorBg+"px;"
+		+"	font-size:"+FM_size.CursorBgFont+"px;"
+		+"	line-height:"+FM_size.CursorBg+"px;"
 		+"	font-weight:bold;"
 		+"	text-align: center;"
 		+"	color: #FFF;"
 		
-		+"	width:"+B_size.CursorBg+"px;"
-		+"	height:"+B_size.CursorBg+"px;"
-		+"	border-radius: "+B_size.CursorBg+"px "+B_size.CursorBg+"px "
-		+B_size.CursorBgRadR/*right corner*/+"px "+B_size.CursorBgRadL/*left corner*/+"px;"
+		+"	width:"+FM_size.CursorBg+"px;"
+		+"	height:"+FM_size.CursorBg+"px;"
+		+"	border-radius: "+FM_size.CursorBg+"px "+FM_size.CursorBg+"px "
+		+FM_size.CursorBgRadR/*right corner*/+"px "+FM_size.CursorBgRadL/*left corner*/+"px;"
 		+"	border-style: none;"
 		
 		+"	background-color: #505050;"
 		+"}"
 		
-		+"#Bean_Cursor_Marker {"
+		+"#FM_Cursor_Marker {"
 		+"	position:fixed;"
 		+"	display:none;"
 		+"	z-index:2100;"
 		+"	margin:0;"
 		+"	padding:0;"
-		+"	width:"+B_size.Marker+"px;"
-		+"	height:"+B_size.Marker+"px;"
-		+"	border-radius:"+B_size.Marker+"px;"
-		+((B_size.MarkerBorder!=0)?("	border:"+B_size.MarkerBorder+"px solid "+B_color.MarkerColor+";"):("	border-style: none;"+"	background-color: "+B_color.MarkerColor+";"))
+		+"	width:"+FM_size.Marker+"px;"
+		+"	height:"+FM_size.Marker+"px;"
+		+"	border-radius:"+FM_size.Marker+"px;"
+		+((FM_size.MarkerBorder!=0)?("	border:"+FM_size.MarkerBorder+"px solid "+FM_color.MarkerColor+";"):("	border-style: none;"+"	background-color: "+FM_color.MarkerColor+";"))
 		+"}"
 		
-		+"#Bean_Menu {"
+		+"#FM_Menu {"
 		+"	position:fixed;"
 		+"	display:none;"
 		+"	z-index:2080;"
 		+"	padding:0;"
 		
 		
-		+"	font-size:"+B_size.MenuFont+"px;"
-		+"	line-height:"+B_size.MenuFontHeight+"px;"
+		+"	font-size:"+FM_size.MenuFont+"px;"
+		+"	line-height:"+FM_size.MenuFontHeight+"px;"
 		//+"	font-weight:bold;"
 		+"	text-align: center;"
 		+"	color: #FFF;"
@@ -187,25 +187,25 @@
 		+"	filter:alpha(opacity=80);"
 		+"	opacity:0.8;"
 		
-		+"	width:"+B_size.MenuX+"px;"
-		+"	height:"+B_size.MenuY+"px;"
-		+"	margin-left:-"+B_size.MenuX/2+"px;"
-		+"	margin-top:-"+B_size.MenuY/2+"px;"
+		+"	width:"+FM_size.MenuX+"px;"
+		+"	height:"+FM_size.MenuY+"px;"
+		+"	margin-left:-"+FM_size.MenuX/2+"px;"
+		+"	margin-top:-"+FM_size.MenuY/2+"px;"
 		
-		+"	border-radius:"+B_size.MenuRad+"px;"
-		+"	border:"+B_size.MenuBorder+"px solid "+B_color.MenuBorderColor+";"
-		+"	background-color: "+B_color.MenuBgColor+";"
+		+"	border-radius:"+FM_size.MenuRad+"px;"
+		+"	border:"+FM_size.MenuBorder+"px solid "+FM_color.MenuBorderColor+";"
+		+"	background-color: "+FM_color.MenuBgColor+";"
 		+"}";
 		
-		return B_thatCss;
+		return FM_thatCss;
 	}
 	
 	
 	window.addEventListener('load',function(){
 		//create CSS
-		var B_size, B_color;
+		var FM_size, FM_color;
 		if (window.devicePixelRatio>1) { //DPR=2/1.5
-			B_size = {
+			FM_size = {
 			"Cursor":160,
 			"CursorFont":40,
 			"CursorMargin":25,
@@ -232,7 +232,7 @@
 			};
 		}
 		else {	//DPR=1
-			B_size = {
+			FM_size = {
 			"Cursor":80,
 			"CursorFont":20,
 			"CursorMargin":15,
@@ -258,27 +258,27 @@
 			"MenuFontHeight":30
 			};
 		}
-		B_color = {
+		FM_color = {
 			"MarkerColor":"#FF0000",
 			"MenuBorderColor":"#436EEE",
 			"MenuBgColor":"#222222"
 			};
 			
-		B_func_insertCss(document.body,B_func_createCssText(B_size,B_color));
+		FM_func_insertCss(document.body,FM_func_createCssText(FM_size,FM_color));
 		//create Cursor Element
-		B_func_createEleNode(document.body,"div","Bean_Cursor","MENU");
-		B_func_createEleNode(document.body,"div","Bean_Cursor_bg","Bean's");
-		B_func_createEleNode(document.body,"div","Bean_Cursor_Marker");
+		FM_func_createEleNode(document.body,"div","FM_Cursor","MENU");
+		FM_func_createEleNode(document.body,"div","FM_Cursor_bg","Bean's");
+		FM_func_createEleNode(document.body,"div","FM_Cursor_Marker");
 		//create Menu Element 
-		B_func_createEleNode(document.body,"div","Bean_Menu");
+		FM_func_createEleNode(document.body,"div","FM_Menu");
 		
 		//the cursor offset
-		var B_cursor = document.getElementById('Bean_Cursor');
-		var B_marker = document.getElementById('Bean_Cursor_Marker');
+		var FM_cursor = document.getElementById('FM_Cursor');
+		var FM_marker = document.getElementById('FM_Cursor_Marker');
 		
-		var B_menu = document.getElementById('Bean_Menu');
+		var FM_menu = document.getElementById('FM_Menu');
 		
-		B_menu.innerHTML="<br /><b>Bean's Fake Mouse for Good</b>"
+		FM_menu.innerHTML="<br /><b>Bean's Fake Mouse for Good</b>"
 		+"<br />"
 		+"<br />[To Click]<br />Drag&Release"
 		+"<br />[To Cancel]<br />Drag&Drag Back&Release"
@@ -289,39 +289,39 @@
 		+"<br />Mostly for Idea Showing<br />ver 6.0"
 		+"<br /><b>ThatBean.com</b>";
 		
-		var B_contentWin = window;	//.frames["contentFrame"];
+		var FM_contentWin = window;	//.frames["contentFrame"];
 		
 		var triggered=false;
 		
-		B_marker.style.display="block";
-		var B_cursor_Hwidth=B_cursor.offsetWidth/2;
-		var B_marker_Hwidth=B_marker.offsetWidth/2;
-		B_marker.style.display="none";
+		FM_marker.style.display="block";
+		var FM_cursor_Hwidth=FM_cursor.offsetWidth/2;
+		var FM_marker_Hwidth=FM_marker.offsetWidth/2;
+		FM_marker.style.display="none";
 		
-		var pageinfo = B_func_getPageSize();
+		var pageinfo = FM_func_getPageSize();
 																				//document.getElementById("pageinfo_1").innerHTML="page:"+pageinfo.pageX+"x"+pageinfo.pageY+" | win:"+pageinfo.winX+"x"+pageinfo.winY+" | DPR:"+window.devicePixelRatio+" | devDPI:"+screen.deviceXDPI+"/"+screen.deviceYDPI+" | logDPI:"+screen.logicalXDPI+"/"+screen.logicalYDPI;
 																				//document.getElementById("pageinfo_2").innerHTML=navigator.userAgent;
-		var B_cur_max_deg=0.1;
-		var B_cur_max_X=B_cursor.offsetLeft+B_cursor.offsetWidth-2*B_cursor_Hwidth;
-		var B_cur_min_X=pageinfo.winX-B_cur_max_X-2*B_cursor_Hwidth;
-		var B_cur_max_Y=B_cursor.offsetTop+B_cursor.offsetWidth-2*B_cursor_Hwidth;
-		var B_cur_min_Y=pageinfo.winY-B_cur_max_Y-2*B_cursor_Hwidth;
-																				//document.getElementById("pageinfo_1").innerHTML+="|MX/MY:"+B_cur_max_X+"-"+B_cur_min_X+"|"+B_cur_max_Y+"-"+B_cur_min_Y+"|"+B_cursor_Hwidth;
-		var R_offset=B_size.CursorOffset;
-		var R_offset_M=B_cursor_Hwidth*Math.SQRT2+B_marker_Hwidth+B_size.MarkerOffset;
+		var FM_cur_max_deg=0.1;
+		var FM_cur_max_X=FM_cursor.offsetLeft+FM_cursor.offsetWidth-2*FM_cursor_Hwidth;
+		var FM_cur_min_X=pageinfo.winX-FM_cur_max_X-2*FM_cursor_Hwidth;
+		var FM_cur_max_Y=FM_cursor.offsetTop+FM_cursor.offsetWidth-2*FM_cursor_Hwidth;
+		var FM_cur_min_Y=pageinfo.winY-FM_cur_max_Y-2*FM_cursor_Hwidth;
+																				//document.getElementById("pageinfo_1").innerHTML+="|MX/MY:"+FM_cur_max_X+"-"+FM_cur_min_X+"|"+FM_cur_max_Y+"-"+FM_cur_min_Y+"|"+FM_cursor_Hwidth;
+		var R_offset=FM_size.CursorOffset;
+		var R_offset_M=FM_cursor_Hwidth*Math.SQRT2+FM_marker_Hwidth+FM_size.MarkerOffset;
 			
-		var X_org=B_cursor.offsetLeft+B_cursor.offsetWidth/2;
-		var Y_org=B_cursor.offsetTop+B_cursor.offsetHeight/2;
+		var X_org=FM_cursor.offsetLeft+FM_cursor.offsetWidth/2;
+		var Y_org=FM_cursor.offsetTop+FM_cursor.offsetHeight/2;
 																				//document.getElementById("pageinfo_2").innerHTML+="|x/y org="+X_org+"|"+Y_org;
 		function win_resize(){
 			//get page size info
-			pageinfo = B_func_getPageSize();
-			B_cur_max_X=B_cursor.offsetLeft+B_cursor.offsetWidth-2*B_cursor_Hwidth;
-			B_cur_min_X=pageinfo.winX-B_cur_max_X-2*B_cursor_Hwidth;
-			B_cur_max_Y=B_cursor.offsetTop+B_cursor.offsetWidth-2*B_cursor_Hwidth;
-			B_cur_min_Y=pageinfo.winY-B_cur_max_Y-2*B_cursor_Hwidth;
-			X_org=B_cursor.offsetLeft+B_cursor.offsetWidth/2;
-			Y_org=B_cursor.offsetTop+B_cursor.offsetHeight/2;
+			pageinfo = FM_func_getPageSize();
+			FM_cur_max_X=FM_cursor.offsetLeft+FM_cursor.offsetWidth-2*FM_cursor_Hwidth;
+			FM_cur_min_X=pageinfo.winX-FM_cur_max_X-2*FM_cursor_Hwidth;
+			FM_cur_max_Y=FM_cursor.offsetTop+FM_cursor.offsetWidth-2*FM_cursor_Hwidth;
+			FM_cur_min_Y=pageinfo.winY-FM_cur_max_Y-2*FM_cursor_Hwidth;
+			X_org=FM_cursor.offsetLeft+FM_cursor.offsetWidth/2;
+			Y_org=FM_cursor.offsetTop+FM_cursor.offsetHeight/2;
 		}
 		
 		//win_resize();
@@ -330,20 +330,20 @@
 	
 		function cur_update(coors,mouseEvent){
 			var tempA=Math.atan2((coors.y-Y_org),(coors.x-X_org));
-			var R_offsetX=Math.min(Math.cos(tempA),B_cur_max_deg);
-			var R_offsetY=Math.min(Math.sin(tempA),B_cur_max_deg);
+			var R_offsetX=Math.min(Math.cos(tempA),FM_cur_max_deg);
+			var R_offsetY=Math.min(Math.sin(tempA),FM_cur_max_deg);
 			
-			B_cursor.style.left=Math.min(Math.max(coors.x-B_cursor_Hwidth+R_offset*R_offsetX,B_cur_min_X),B_cur_max_X)+"px";
-			B_cursor.style.top=Math.min(Math.max(coors.y-B_cursor_Hwidth+R_offset*R_offsetY,B_cur_min_Y),B_cur_max_Y)+"px";
+			FM_cursor.style.left=Math.min(Math.max(coors.x-FM_cursor_Hwidth+R_offset*R_offsetX,FM_cur_min_X),FM_cur_max_X)+"px";
+			FM_cursor.style.top=Math.min(Math.max(coors.y-FM_cursor_Hwidth+R_offset*R_offsetY,FM_cur_min_Y),FM_cur_max_Y)+"px";
 			
-			//B_marker
-			B_marker.style.left=parseInt(B_cursor.style.left)+B_cursor_Hwidth-B_marker_Hwidth+R_offset_M*Math.cos(tempA)+"px";
-			B_marker.style.top=parseInt(B_cursor.style.top)+B_cursor_Hwidth-B_marker_Hwidth+R_offset_M*Math.sin(tempA)+"px";
+			//FM_marker
+			FM_marker.style.left=parseInt(FM_cursor.style.left)+FM_cursor_Hwidth-FM_marker_Hwidth+R_offset_M*Math.cos(tempA)+"px";
+			FM_marker.style.top=parseInt(FM_cursor.style.top)+FM_cursor_Hwidth-FM_marker_Hwidth+R_offset_M*Math.sin(tempA)+"px";
 			
-			if (mouseEvent!="") B_func_fakeMouseEvent(B_contentWin,parseInt(B_marker.style.left)+B_marker_Hwidth,parseInt(B_marker.style.top)+B_marker_Hwidth,mouseEvent);
+			if (mouseEvent!="") FM_func_fakeMouseEvent(FM_contentWin,parseInt(FM_marker.style.left)+FM_marker_Hwidth,parseInt(FM_marker.style.top)+FM_marker_Hwidth,mouseEvent);
 			
-			B_func_setDegree(B_cursor,(tempA*180/Math.PI+135));
-																				//document.getElementById("xycoordinates").innerHTML="RealCur: (" + coors.x + "," + coors.y + ")"+"|A:"+tempA.toFixed(3)+"|"+(tempA*180/Math.PI).toFixed(3)+"|Cur:"+parseInt(B_cursor.style.left)+"|"+parseInt(B_cursor.style.top);
+			FM_func_setDegree(FM_cursor,(tempA*180/Math.PI+135));
+																				//document.getElementById("xycoordinates").innerHTML="RealCur: (" + coors.x + "," + coors.y + ")"+"|A:"+tempA.toFixed(3)+"|"+(tempA*180/Math.PI).toFixed(3)+"|Cur:"+parseInt(FM_cursor.style.left)+"|"+parseInt(FM_cursor.style.top);
 		}
 		
 		var touch_orgX, touch_orgY;
@@ -370,19 +370,19 @@
 			if (!triggered) return;
 			event.preventDefault();
 			event.stopPropagation();
-			if ((touch_orgX-coors.x)<B_size.MoveDet && (touch_orgY-coors.y)<B_size.MoveDet) {
-				B_marker.style.display="none";
-				B_cursor.style.left="";//B_cursor_org_left;
-				B_cursor.style.top="";//B_cursor_org_top;
-				B_cursor.innerHTML=(away==1?"Cancel":"MENU");
+			if ((touch_orgX-coors.x)<FM_size.MoveDet && (touch_orgY-coors.y)<FM_size.MoveDet) {
+				FM_marker.style.display="none";
+				FM_cursor.style.left="";//FM_cursor_org_left;
+				FM_cursor.style.top="";//FM_cursor_org_top;
+				FM_cursor.innerHTML=(away==1?"Cancel":"MENU");
 				return;
 			}
 			else {
 				away=1;
-				B_cursor.innerHTML="Click";
+				FM_cursor.innerHTML="Click";
 			}
 			//show && move
-			B_marker.style.display="block";
+			FM_marker.style.display="block";
 			cur_update(coors,"");
 			//cur_update(coors,"mouseover");
 		}
@@ -394,15 +394,15 @@
 				event.stopPropagation();
 				triggered=false;
 				//clear
-				//B_cursor.style.display="none";
-				B_marker.style.display="none";
+				//FM_cursor.style.display="none";
+				FM_marker.style.display="none";
 				
 				if (away==0) {
 					//alert("Menu, please!");
-					B_menu.style.display="block";
+					FM_menu.style.display="block";
 				}
 				else {
-					if ((touch_orgX-coors.x)<B_size.MoveDet && (touch_orgY-coors.y)<B_size.MoveDet) {
+					if ((touch_orgX-coors.x)<FM_size.MoveDet && (touch_orgY-coors.y)<FM_size.MoveDet) {
 						//do nothing
 					}
 					else {
@@ -410,16 +410,16 @@
 					}
 				}
 				//reset Cursor
-				B_cursor.style.left="";//B_cursor_org_left;
-				B_cursor.style.top="";//B_cursor_org_top;
-				B_func_setDegree(B_cursor,0);
-				B_cursor.innerHTML="MENU";
+				FM_cursor.style.left="";//FM_cursor_org_left;
+				FM_cursor.style.top="";//FM_cursor_org_top;
+				FM_func_setDegree(FM_cursor,0);
+				FM_cursor.innerHTML="MENU";
 																				//document.getElementById("xycoordinates").innerHTML="try swipe/drag from the \"Cursor\" button";
 			}
 		}
 		
 		// create a drawer which tracks touch movements
-		var Bean_cursorEventDispenser = {
+		var FM_cursorEventDispenser = {
 			touchstart: cur_draw,
 			mousedown: cur_draw,
 			touchmove: cur_redraw,
@@ -431,7 +431,7 @@
 		};
 		// create a function to pass touch events and coordinates to drawer
 		var lastX, lastY;
-		function Bean_func_cursorEvent(event){
+		function FM_func_cursorEvent(event){
 			// get the touch coordinates
 																				//document.getElementById("pageinfo_2").innerHTML=event.type;
 			var coors;
@@ -457,29 +457,29 @@
 			lastX=coors.x;
 			lastY=coors.y;
 			if(!lastX && !lastX) ;//alert(event.type+" coor error "+event.target+"|"+event.currentTarget);
-			else Bean_cursorEventDispenser[event.type](coors);
+			else FM_cursorEventDispenser[event.type](coors);
 		}
 		
-		function Bean_func_menuEvent(event){
+		function FM_func_menuEvent(event){
 			event.preventDefault();
 			event.stopPropagation();
-			B_menu.style.display="none";
+			FM_menu.style.display="none";
 		}
 		
 		// attach the touchstart, touchmove, touchend event listeners.
-	    B_cursor.addEventListener('touchstart',Bean_func_cursorEvent, false);
-	    document.body.addEventListener('touchmove',Bean_func_cursorEvent, false);
-	    document.body.addEventListener('touchend',Bean_func_cursorEvent, false);
-	    document.body.addEventListener('touchcancel',Bean_func_cursorEvent, false);
+	    FM_cursor.addEventListener('touchstart',FM_func_cursorEvent, false);
+	    document.body.addEventListener('touchmove',FM_func_cursorEvent, false);
+	    document.body.addEventListener('touchend',FM_func_cursorEvent, false);
+	    document.body.addEventListener('touchcancel',FM_func_cursorEvent, false);
 		
-	    B_cursor.addEventListener('mousedown',Bean_func_cursorEvent, false);
-		document.body.addEventListener('mousemove',Bean_func_cursorEvent, false);
-	    document.body.addEventListener('mouseup',Bean_func_cursorEvent, false);
-		//document.body.addEventListener('mouseout',Bean_func_cursorEvent, false);	//cause error...
+	    FM_cursor.addEventListener('mousedown',FM_func_cursorEvent, false);
+		document.body.addEventListener('mousemove',FM_func_cursorEvent, false);
+	    document.body.addEventListener('mouseup',FM_func_cursorEvent, false);
+		//document.body.addEventListener('mouseout',FM_func_cursorEvent, false);	//cause error...
 		
-		B_menu.addEventListener('click',Bean_func_menuEvent, false);
-		B_menu.addEventListener('touchend',Bean_func_menuEvent, false);
-		B_menu.addEventListener('mouseup',Bean_func_menuEvent, false);
+		FM_menu.addEventListener('click',FM_func_menuEvent, false);
+		FM_menu.addEventListener('touchend',FM_func_menuEvent, false);
+		FM_menu.addEventListener('mouseup',FM_func_menuEvent, false);
 	},false);	// end window.onLoad
 	
 	//test if multiple onload can be processed()stupid huh?
