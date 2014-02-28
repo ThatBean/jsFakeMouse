@@ -21,33 +21,43 @@
 		overflow:hidden;
 	}
 
-
-	
-button,
-.button {
-	display: inline-block;
-	height: 22px;
-	width: 4em;
-	margin:0.2em 0.1em;
-	padding:0;
-	line-height: 20px;
-	text-align: center;
-	font-size: 18px;
-	color: #FFF;
-	border: 2px solid #427AC7;
-	background-color: #5091E9;
-}
-button:hover,
-.button:hover {
-	cursor:pointer;
-	border: 2px solid #427AC7;
-	background-color: #436EEE;
-}
-button:active,
-.button:active {
-	border: 2px solid #EEC900;
-	background-color: #EEEE00;
-}
+	.button {
+		display: inline-block;
+		height: 11px;
+		width: 4em;
+		margin:0.2em 0.1em;
+		padding:0;
+		line-height: 10px;
+		text-align: center;
+		font-size: 9px;
+		color: #FFF;
+		border: 1px solid #427AC7;
+		background-color: #5091E9;
+	}
+	.buttonHD {
+		display: inline-block;
+		height: 22px;
+		width: 4em;
+		margin:0.2em 0.1em;
+		padding:0;
+		line-height: 20px;
+		text-align: center;
+		font-size: 18px;
+		color: #FFF;
+		border: 2px solid #427AC7;
+		background-color: #5091E9;
+	}
+	button:hover,
+	.button:hover {
+		cursor:pointer;
+		border: 2px solid #427AC7;
+		background-color: #436EEE;
+	}
+	button:active,
+	.button:active {
+		border: 2px solid #EEC900;
+		background-color: #EEEE00;
+	}
 </style>
 
 <script type="text/javascript" src="FakeMouse.js"></script> 
@@ -76,7 +86,7 @@ button:active,
 	}
 	
 	insertCss( ".buttonMARK {	color: #FFF;	border: 2px solid #000000;	background-color: #000000;}" );
-	
+
 	Number.prototype.BeanFormat = function (F_length) {
 		var tempSpace="";
 		for(var i=0;i<(F_length-this.toString().length);i++) tempSpace=tempSpace+"&nbsp;";
@@ -92,6 +102,8 @@ button:active,
 		context.fillText(CTinfo,10,50);
 	}
 	
+	var btnClassSize="";
+	if (window.devicePixelRatio>1) btnClassSize="HD";
 	var tgt_btn_no = -1;
 		function btn_hit(btn_no) {
 			alert(" button #"+btn_no+" clicked");
@@ -99,12 +111,12 @@ button:active,
 			if(tgt_btn_no==btn_no || tgt_btn_no==-1) {
 				//alert("target clicked");
 				
-				if (tgt_btn_no!=-1) document.getElementById('btn_'+tgt_btn_no).className="";
+				if (tgt_btn_no!=-1) document.getElementById('btn_'+tgt_btn_no).className="button"+btnClassSize;
 				
 				tgt_btn_no = Math.floor(Math.random()*800);
 				var Tinfo="Click the Button ["+tgt_btn_no+"] if you can?";
 				Canvas_DrawText(Tinfo);
-				document.getElementById('btn_'+tgt_btn_no).className="buttonMARK";
+				document.getElementById('btn_'+tgt_btn_no).className="button"+btnClassSize+" "+"buttonMARK";
 			}
 		}
 		
@@ -114,9 +126,11 @@ button:active,
 	</script>
 	
 	<script>
-	//document.write("<div style='width:90%;'>");
-	for(var i=0;i<800;i++) document.write("<button id='btn_"+i+"' onclick='btn_hit("+i+");'>["+i.BeanFormat(4)+"]</button>");
-	//document.write("<div style='height:400px;'></div></div>");
+		//document.write("<div style='width:90%;'>");
+		var btnClassSize="";
+		if (window.devicePixelRatio>1) btnClassSize="HD";
+		for(var i=0;i<800;i++) document.write("<button id='btn_"+i+"' class='button"+btnClassSize+"' onclick='btn_hit("+i+");'>["+i.BeanFormat(4)+"]</button>");
+		//document.write("<div style='height:400px;'></div></div>");
 	</script>
 </body>
 </html>
