@@ -30,7 +30,6 @@
 			line-height:10px;
 			overflow:hidden;
 		}
-
 		.button {
 			display: inline-block;
 			height: 11px;
@@ -83,7 +82,7 @@
 
 <body style="margin:0px;">
 	
-	<canvas id="theCanvas" style="border:solid #4682d9;border-width: 1px 1px 1px 50px;" width="600px">Sorry, your browser is not supported.</canvas>
+	<h1 id="theLabel">Loading...</h1>
 	
 	<br />
 	
@@ -97,7 +96,7 @@
 		 **/
 
 		Number.prototype.BeanFormat = function (F_length) {
-			if (F_length >= this.toString().length) return "TooBig"
+			if (F_length <= this.toString().length) return "TooBig";
 			var tempSpace="";
 			for(var i=0;i<(F_length-this.toString().length);i++) {
 				tempSpace=tempSpace+"&nbsp;";	//Add 
@@ -106,21 +105,13 @@
 		}
 		
 		
-		var canvas = document.getElementById('theCanvas');
-		var context = canvas.getContext('2d');
-			
-		function Canvas_DrawText(CTinfo) {
-			canvas.width = canvas.width;
-			context.font="40px Georgia";
-			context.fillText(CTinfo,10,50);
-		}
-		
+		var Label = document.getElementById('theLabel');
 		
 		var btnClassSize="";
 		if (window.devicePixelRatio>1) btnClassSize="HD";
 		var tgt_btn_no = -1;
 			function btn_hit(btn_no) {
-				alert(" button #"+btn_no+" clicked");
+				alert(" button #"+btn_no+" was clicked");
 				
 				if(tgt_btn_no==btn_no || tgt_btn_no==-1) {
 					//alert("target clicked");
@@ -128,14 +119,13 @@
 					if (tgt_btn_no!=-1) document.getElementById('btn_'+tgt_btn_no).className="button"+btnClassSize;
 					
 					tgt_btn_no = Math.floor(Math.random()*800);
-					var Tinfo="Click the Button ["+tgt_btn_no+"] if you can?";
-					Canvas_DrawText(Tinfo);
+					Label.innerHTML="Click the Button ["+tgt_btn_no+"] if you can?";
 					document.getElementById('btn_'+tgt_btn_no).className="button"+btnClassSize+" "+"buttonMARK";
 				}
 			}
 			
 		window.addEventListener('load',function(){
-			Canvas_DrawText("try swipe/drag from the \"MENU\" button");
+			Label.innerHTML=("Try swipe/drag from the \"MENU\" button");
 		});
 	</script>
 	
