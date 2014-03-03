@@ -71,6 +71,11 @@ var FM_version = "6.1";	//It starts from version 6.0 on Git(the sixth copy I did
  *   -pageX&Y: the size of the whole HTML page in pixel
  *   -winX&Y: the size of the window(client) in pixel
  * 
+ * 
+ * 
+ * 
+ * 
+ * 
  **/
 
 function FM_func_getPageSize() {
